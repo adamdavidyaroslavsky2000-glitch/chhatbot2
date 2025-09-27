@@ -1,12 +1,51 @@
-# Token Filter Layer Pack
+# AI Chatbot System
 
-This pack contains everything you need to teach your existing LLM how
-to prioritise important tokens during text generation.  It extends
-previous rule‑guided and usage adapters by introducing a **token
-filter** that distinguishes between tokens that carry core meaning and
-tokens that are merely fillers or stop words.  The objective is to
-improve generation quality by steering the model away from gibberish
-and irrelevant text after the first token.
+מערכת צ'אטבוט מתקדמת עם מודלים מאומנים בשלבים מרובים. המערכת כוללת:
+
+- **מודלים מאומנים**: בסיס + כללים דינמיים + לחץ חברתי + סינון טוקנים + שיחה
+- **ממשק מודרני**: צ'אטבוט מינימליסטי כמו ChatGPT
+- **API מתקדם**: FastAPI עם תמיכה מלאה בעברית
+- **פריסה קלה**: הפעלה בפקודה אחת
+
+## 🚀 הפעלה מהירה
+
+```bash
+# יצירת virtual environment
+python3 -m venv chatbot_env
+source chatbot_env/bin/activate
+
+# התקנת חבילות
+pip install -r backend/requirements.txt
+
+# הפעלת הצ'אטבוט
+python start_chatbot.py
+```
+
+הצ'אטבוט יהיה זמין ב: http://localhost:8000
+
+## 🎨 תכונות הממשק
+
+- **עיצוב מודרני**: דומה ל-ChatGPT ו-Gemini
+- **סיידבר**: היסטוריית שיחות עם אפשרות לחזור לשיחות קודמות
+- **רספונסיבי**: עובד מושלם על מובייל וטאבלט
+- **אנימציות חלקות**: מעברים חלקים ואנימציות מקצועיות
+- **תמיכה בעברית**: ממשק מלא בעברית ואנגלית
+- **שמירת היסטוריה**: השיחות נשמרות בדפדפן
+
+## 🏗️ ארכיטקטורת המערכת
+
+### שלבי האימון
+1. **Base Model** - מודל בסיס עם SentencePiece
+2. **Dynamic Rules** - התאמה לכללים דינמיים  
+3. **Social Pressure** - התאמה ללחץ חברתי
+4. **Token Filter** - סינון טוקנים חשובים
+5. **Conversation** - התאמה לשיחה טבעית
+
+### רכיבי המערכת
+- **Frontend**: HTML/CSS/JS מודרני עם עיצוב ChatGPT
+- **Backend**: FastAPI עם מודלים מאומנים
+- **Models**: TinyTransformerLM עם 600 טוקנים
+- **Tokenizer**: SentencePiece מותאם אישית
 
 ## Contents
 
