@@ -112,13 +112,23 @@ class ModelManager:
                     
                     # Get logits
                     logits = self.model(current_tensor)
-                    next_token_logits = logits[0, -1, :] / 0.7  # Temperature
+                    next_token_logits = logits[0, -1, :] / 0.8  # Temperature
                     
-                    # Remove EOS token from consideration
+                    # Remove EOS token and BOS token from consideration
                     next_token_logits[self.tokenizer.EOS] = float('-inf')
+                    next_token_logits[self.tokenizer.BOS] = float('-inf')
                     
-                    # Get top 10 tokens and sample from them
-                    top_k = 10
+                    # Apply repetition penalty to avoid repeating tokens
+                    if step > 0:
+                        # Penalize the last few tokens to avoid repetition
+                        for i in range(min(3, len(generated_ids) - len(input_ids))):
+                            if i > 0:
+                                token_to_penalize = generated_ids[-(i+1)]
+                                if next_token_logits[token_to_penalize] > 0:
+                                    next_token_logits[token_to_penalize] = next_token_logits[token_to_penalize] / (1.1 + i * 0.1)
+                    
+                    # Get top 20 tokens and sample from them
+                    top_k = 20
                     top_logits, top_indices = torch.topk(next_token_logits, top_k)
                     
                     # Sample from top tokens
