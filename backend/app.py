@@ -90,7 +90,7 @@ class ModelManager:
             print(f"Error loading model: {e}")
             return False
     
-    def generate_response(self, prompt: str, max_tokens: int = 10) -> str:
+    def generate_response(self, prompt: str, max_tokens: int = 20) -> str:
         """Generate response using the trained model"""
         try:
             if not self.model or not self.tokenizer:
@@ -112,10 +112,13 @@ class ModelManager:
                     
                     # Get logits
                     logits = self.model(current_tensor)
-                    next_token_logits = logits[0, -1, :] / 0.8  # Temperature
+                    next_token_logits = logits[0, -1, :] / 0.7  # Temperature
                     
-                    # Get top 5 tokens and sample from them
-                    top_k = 5
+                    # Remove EOS token from consideration
+                    next_token_logits[self.tokenizer.EOS] = float('-inf')
+                    
+                    # Get top 10 tokens and sample from them
+                    top_k = 10
                     top_logits, top_indices = torch.topk(next_token_logits, top_k)
                     
                     # Sample from top tokens
@@ -128,13 +131,8 @@ class ModelManager:
                     # Add to sequence
                     generated_ids.append(next_token)
                     
-                    # Stop if we hit EOS token
-                    if next_token == self.tokenizer.EOS:
-                        print("Hit EOS token, stopping generation")
-                        break
-                    
                     # Stop if we hit a reasonable length
-                    if len(generated_ids) > len(input_ids) + 8:
+                    if len(generated_ids) > len(input_ids) + 15:
                         print("Reached max length, stopping generation")
                         break
             
