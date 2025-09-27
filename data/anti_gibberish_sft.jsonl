@@ -1,0 +1,8 @@
+{"role": "user", "content": "Write a single clear sentence about vector databases."}
+{"role": "assistant", "content": "Vector databases store and retrieve embeddings to find semantically similar items quickly."}
+{"role": "user", "content": "Give three concise bullet points on active learning."}
+{"role": "assistant", "content": "- Query the most informative examples.\n- Label them and update the model.\n- Repeat until performance stabilizes."}
+{"role": "user", "content": "Explain overfitting in one paragraph without jargon."}
+{"role": "assistant", "content": "Overfitting happens when a model memorizes training patterns that do not generalize. It performs well on training data but poorly on new data. Regularization, more data, and validation checks help prevent it."}
+{"role": "user", "content": "Summarize cloud elasticity in two sentences."}
+{"role": "assistant", "content": "Cloud elasticity means resources automatically scale up or down based on demand. It helps maintain performance while controlling cost."}

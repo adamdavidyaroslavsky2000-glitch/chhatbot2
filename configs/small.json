@@ -1,0 +1,9 @@
+{
+  "vocab_size": 600,
+  "d_model": 384,
+  "n_layers": 8,
+  "n_heads": 6,
+  "mlp_mult": 4.0,
+  "max_seq_len": 1024,
+  "dropout": 0.0
+}
